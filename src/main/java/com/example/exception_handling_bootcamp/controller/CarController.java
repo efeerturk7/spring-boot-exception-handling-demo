@@ -14,8 +14,8 @@ public class CarController {
     @Autowired
     private CarService carService;
     @GetMapping("/find/{id}")
-    public RootEntity<DtoCar> getByCarId(@PathVariable(name = "id") Long id){
-        return RootEntity.ok(carService.getByCarId(id));
+    public RootEntity<DtoCar> getCarById(@PathVariable(name = "id") Long id){
+        return RootEntity.ok(carService.getCarById(id));
     }
     @PostMapping("/add/{id}")
     public RootEntity<DtoCar> addCar(@Valid @RequestBody DtoCarIU newCar, @PathVariable(name = "id") Long id){

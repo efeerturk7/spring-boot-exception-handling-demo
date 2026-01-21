@@ -28,16 +28,10 @@ public class GlobalExceptionHandler {
         errorPage.setErrorMessage(brandNotFoundException.getMessage());
         errorPage.setCreateDate(new Date());
         errorPage.setStatus(HttpStatus.NOT_FOUND.value());
-        return ResponseEntity.badRequest().body(RootEntity.error(errorPage,brandNotFoundException.getMessage()));
-    }
-    @ExceptionHandler(value = CarPriceNotValidException.class)
-    public ResponseEntity<RootEntity<ApiError>>notValidPriceHandler(CarPriceNotValidException carPriceNotValidException){
-        ApiError<String>errorPage=new ApiError<>();
-        errorPage.setStatus(HttpStatus.BAD_REQUEST.value());
-        errorPage.setErrorMessage(carPriceNotValidException.getMessage());
-        errorPage.setCreateDate(new Date());
-        return ResponseEntity.badRequest().body(RootEntity.error(errorPage,carPriceNotValidException.getMessage()));
-    }
+        return ResponseEntity.badRequest().body(RootEntity.error(errorPage,brandNotFoundException.getMessage()));}
+
+
+
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
         public ResponseEntity<RootEntity<ApiError>>handlerNotValidException(MethodArgumentNotValidException validException){
 

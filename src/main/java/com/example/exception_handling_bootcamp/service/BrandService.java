@@ -20,16 +20,12 @@ public class BrandService {
     @Autowired
     private IBrandRepository brandRepository;
     public DtoBrand addBrand(DtoBrandIU newBrand){
-        if (newBrand.getName()!=null||!newBrand.getName().isEmpty()){
             Brand brand=new Brand();
             DtoBrand dtoBrand = new DtoBrand();
             BeanUtils.copyProperties(newBrand,brand);
             Brand savedBrand=brandRepository.save(brand);
             BeanUtils.copyProperties(savedBrand,dtoBrand);
             return dtoBrand;
-        }else {
-            throw new RuntimeException("Not Valid name");
-        }
     }
     public DtoBrand findBrandById(Long id){
         if (brandRepository.existsById(id)){
@@ -38,21 +34,16 @@ public class BrandService {
             List<Car>carList=brand.getCarList();
             List<DtoCar>dtoCarList=new ArrayList<>();
             DtoBrand dtoBrand=new DtoBrand();
-            DtoBrandIU dtoBrandIU=new DtoBrandIU();
             BeanUtils.copyProperties(brand,dtoBrand);
-            BeanUtils.copyProperties(dtoBrand,dtoBrandIU);
             for (Car car:carList){
                 DtoCar dtoCar=new DtoCar();
                 BeanUtils.copyProperties(car,dtoCar);
-                dtoCar.setBrand(dtoBrandIU);
                 dtoCarList.add(dtoCar);
             }
             dtoBrand.setDtoCarList(dtoCarList);
             return dtoBrand;
-
-
         }else {
-            throw new BrandNotFoundException("Not Founden Brand");
+            throw new BrandNotFoundException("No brand found in the database.");
         }
     }
 }
