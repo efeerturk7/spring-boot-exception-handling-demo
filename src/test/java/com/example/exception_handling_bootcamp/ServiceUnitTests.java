@@ -79,7 +79,7 @@ public class ServiceUnitTests {
         savedCar.setPrice(324745.6);
         savedCar.setBrand(mockBrand);
 
-        when(brandRepository.existsById(brandId)).thenReturn(true);
+        when(brandRepository.existsById(brandId)).thenReturn(true);git push origin main
 
         when(brandRepository.findById(brandId)).thenReturn(Optional.of(mockBrand));
 
