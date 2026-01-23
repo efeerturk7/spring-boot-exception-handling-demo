@@ -4,10 +4,12 @@ import com.example.exception_handling_bootcamp.dto.DtoBrand;
 import com.example.exception_handling_bootcamp.dto.DtoBrandIU;
 import com.example.exception_handling_bootcamp.dto.DtoCar;
 import com.example.exception_handling_bootcamp.dto.DtoCarIU;
+import com.example.exception_handling_bootcamp.repository.ICarRepository;
 import com.example.exception_handling_bootcamp.service.BrandService;
 import com.example.exception_handling_bootcamp.service.CarService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = {ExceptionHandlingBootcampApplication.class})
 @Transactional
-public class ExceptionHandlingBootcampApplicationTests {
+public class ServiceIntegrationTest {
+
 	@Autowired
 	private CarService carService;
 	@Autowired
@@ -47,6 +50,7 @@ public class ExceptionHandlingBootcampApplicationTests {
 		assertNotNull(cars.get(0).getId());
 		assertEquals("M5CS", cars.get(0).getModel());
 	}
+
 
 
 }
